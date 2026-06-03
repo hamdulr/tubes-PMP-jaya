@@ -1,0 +1,6 @@
+# Ignore build artifacts
+output/
+*.exe
+
+# Ignore editor settings
+.vscode/
