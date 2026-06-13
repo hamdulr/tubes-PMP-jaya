@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "display.h"
 
 void printSeparatorLine(void) {
@@ -57,5 +58,63 @@ void printAllItems(Node *head) {
         current = current->next;
     }
     
+    printSeparatorLine();
+}
+
+void printInventorySummary(Node *head) {
+    if (head == NULL) {
+        printf("Database kosong. Tidak ada ringkasan yang dapat ditampilkan.\n");
+        return;
+    }
+
+    int totalJenisBarang = 0;
+    int totalFisikBarang = 0;
+    
+    // Variabel penghitung kategori status
+    int countTersedia = 0;
+    int countDipinjam = 0;
+    int countRusak = 0;
+    int countHabis = 0;
+    int countLainnya = 0;
+
+    Node *current = head;
+    
+    // Hanya melakukan 1 kali traversal (O(n)) untuk menghitung seluruh metrik
+    while (current != NULL) {
+        totalJenisBarang++;
+        totalFisikBarang += current->data.stock;
+
+        // Kategorisasi status menggunakan strstr agar lebih kebal terhadap typo huruf besar/kecil
+        // asalkan mengandung kata kuncinya.
+        if (strstr(current->data.status, "Tersedia") || strstr(current->data.status, "tersedia")) {
+            countTersedia++;
+        } else if (strstr(current->data.status, "Dipinjam") || strstr(current->data.status, "dipinjam")) {
+            countDipinjam++;
+        } else if (strstr(current->data.status, "Rusak") || strstr(current->data.status, "rusak")) {
+            countRusak++;
+        } else if (strstr(current->data.status, "Habis") || strstr(current->data.status, "habis") || current->data.stock == 0) {
+            countHabis++;
+        } else {
+            countLainnya++;
+        }
+
+        current = current->next;
+    }
+
+    // Mencetak layar ringkasan
+    printSeparatorLine();
+    printf("RINGKASAN INVENTARIS LABORATORIUM\n");
+    printSeparatorLine();
+    printf("Total Jenis Komponen : %d macam\n", totalJenisBarang);
+    printf("Total Fisik Barang   : %d unit\n", totalFisikBarang);
+    printf("\nRincian Status:\n");
+    printf("- Tersedia           : %d\n", countTersedia);
+    printf("- Dipinjam           : %d\n", countDipinjam);
+    printf("- Rusak              : %d\n", countRusak);
+    printf("- Habis              : %d\n", countHabis);
+    
+    if (countLainnya > 0) {
+        printf("- Status Lainnya     : %d\n", countLainnya);
+    }
     printSeparatorLine();
 }
