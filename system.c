@@ -42,6 +42,9 @@ void startSystem(void) {
             case 6: 
                 printAllItems(head); 
                 break;
+            case 7:
+                printInventorySummary(head);
+                break;
             case 0:
                 printf("Menutup sistem...\n");
                 freeAllNodes(&head);
