@@ -3,12 +3,13 @@
 #include "display.h"
 
 void printSeparatorLine(void) {
-    printf("----------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
 void printTableHeader(void) {
     printSeparatorLine();
-    // Lebar kolom disesuaikan dengan limit array di types.h
+    // Merujuk pada types.h yang memuat angka Max_ID = 10, Max_NAME = 30, dsb
+    // dikurang 2 untuk padding spasi di kiri dan kanan
     printf("| %-8s | %-28s | %-18s | %-5s | %-18s | %-13s | %-23s | %-23s |\n",
            "ID", "Nama Barang", "Kategori", "Stok", "Lokasi", "Status", "Pemilik", "PIC");
     printSeparatorLine();
@@ -22,8 +23,8 @@ void printMenu(void) {
     printf("1. Tambah Data Barang\n");
     printf("2. Hapus Data Barang\n");
     printf("3. Cari Data Barang\n");
-    printf("4. Perbarui Stok\n");
-    printf("5. Perbarui Status\n");
+    printf("4. Update Stok Barang\n");
+    printf("5. Update Status Barang\n");
     printf("6. Tampilkan Seluruh Data\n");
     printf("0. Keluar Sistem\n");
     printf("Pilih menu: ");
@@ -31,7 +32,7 @@ void printMenu(void) {
 
 void printItem(Node *node) {
     if (node == NULL) return;
-    
+    // Sama persis dengan format printTableHeader
     printf("| %-8s | %-28s | %-18s | %-5d | %-18s | %-13s | %-23s | %-23s |\n",
            node->data.id,
            node->data.name,
@@ -44,14 +45,15 @@ void printItem(Node *node) {
 }
 
 void printAllItems(Node *head) {
-    // Memenuhi syarat pencegahan error untuk data kosong
+    // Cek apakah linked list kosong
     if (head == NULL) {
-        printf("Database kosong. Tidak ada data inventaris untuk ditampilkan.\n");
+        printf("Database kosong.\n");
         return;
     }
 
     printTableHeader();
-    
+
+    // Traversal printItem linked list sampai habis
     Node *current = head;
     while (current != NULL) {
         printItem(current);
@@ -62,15 +64,16 @@ void printAllItems(Node *head) {
 }
 
 void printInventorySummary(Node *head) {
+    // Cek apakah linked list kosong
     if (head == NULL) {
-        printf("Database kosong. Tidak ada ringkasan yang dapat ditampilkan.\n");
+        printf("Database kosong.\n");
         return;
     }
 
     int totalJenisBarang = 0;
     int totalFisikBarang = 0;
     
-    // Variabel penghitung kategori status
+    // Variabel internal untuk menghitung status barang
     int countTersedia = 0;
     int countDipinjam = 0;
     int countRusak = 0;
@@ -79,13 +82,11 @@ void printInventorySummary(Node *head) {
 
     Node *current = head;
     
-    // Hanya melakukan 1 kali traversal (O(n)) untuk menghitung seluruh metrik
     while (current != NULL) {
         totalJenisBarang++;
         totalFisikBarang += current->data.stock;
 
-        // Kategorisasi status menggunakan strstr agar lebih kebal terhadap typo huruf besar/kecil
-        // asalkan mengandung kata kuncinya.
+        // Pengecekan kategori status dengan strstr
         if (strstr(current->data.status, "Tersedia") || strstr(current->data.status, "tersedia")) {
             countTersedia++;
         } else if (strstr(current->data.status, "Dipinjam") || strstr(current->data.status, "dipinjam")) {
@@ -105,7 +106,7 @@ void printInventorySummary(Node *head) {
     printSeparatorLine();
     printf("RINGKASAN INVENTARIS LABORATORIUM\n");
     printSeparatorLine();
-    printf("Total Jenis Komponen : %d macam\n", totalJenisBarang);
+    printf("Total Jenis Komponen : %d jenis\n", totalJenisBarang);
     printf("Total Fisik Barang   : %d unit\n", totalFisikBarang);
     printf("\nRincian Status:\n");
     printf("- Tersedia           : %d\n", countTersedia);

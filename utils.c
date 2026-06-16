@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "linkedlist.h"
+#include "utils.h"
 
 void clearInputBuffer(void)
 {
