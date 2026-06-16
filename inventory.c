@@ -1,11 +1,5 @@
-/* ==================================================================
- * inventory.c
- * Implementasi modul operasi inventaris — Sistem Inventarisasi Lab
- * ================================================================== */
-
 #include <stdio.h>
 #include <string.h>
-
 #include "inventory.h"
 #include "linkedlist.h"
 #include "display.h"

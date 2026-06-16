@@ -1,25 +1,14 @@
-/* ============================================================
- * linked_list.c
- * Implementasi modul operasi linked list — Sistem Inventarisasi Lab
- * ============================================================ */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "linkedlist.h"
 
-/* ----------------------------------------------------------
- * initList
- * ---------------------------------------------------------- */
 void initList(Node** head) {
     if (head != NULL) {
         *head = NULL;
     }
 }
 
-/* ----------------------------------------------------------
- * addNodeToList
- * ---------------------------------------------------------- */
 void addNodeToList(Node** head, Item newItem, int* success) {
     *success = 0; // Set status gagal sebagai default
     
@@ -58,9 +47,6 @@ void addNodeToList(Node** head, Item newItem, int* success) {
     *success = 1; // Berhasil
 }
 
-/* ----------------------------------------------------------
- * deleteNodeFromList
- * ---------------------------------------------------------- */
 void deleteNodeFromList(Node** head, char* targetId, int* success) {
     *success = 0; // Set status gagal sebagai default
     
@@ -95,9 +81,6 @@ void deleteNodeFromList(Node** head, char* targetId, int* success) {
     }
 }
 
-/* ----------------------------------------------------------
- * findNodeById
- * ---------------------------------------------------------- */
 void findNodeById(Node* head, char* targetId, Node** result) {
     *result = NULL; // Set default null jika tidak ketemu
     
@@ -115,9 +98,6 @@ void findNodeById(Node* head, char* targetId, Node** result) {
     }
 }
 
-/* ----------------------------------------------------------
- * countNodes
- * ---------------------------------------------------------- */
 void countNodes(Node* head, int* count) {
     *count = 0;
     Node* current = head;
@@ -128,9 +108,6 @@ void countNodes(Node* head, int* count) {
     }
 }
 
-/* ----------------------------------------------------------
- * freeAllNodes
- * ---------------------------------------------------------- */
 void freeAllNodes(Node** head) {
     if (head == NULL) return;
 
