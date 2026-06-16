@@ -8,11 +8,6 @@
 #include <string.h>
 #include "linkedlist.h"
 
-/* Definisi default untuk MAX_ITEMS jika belum didefinisikan sebelumnya */
-#ifndef MAX_ITEMS
-#define MAX_ITEMS 100
-#endif
-
 /* ----------------------------------------------------------
  * initList
  * ---------------------------------------------------------- */
