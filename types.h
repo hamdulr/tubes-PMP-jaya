@@ -8,6 +8,7 @@
 #define MAX_STATUS    15
 #define MAX_OWNER     25
 #define MAX_PIC       25
+#define MAX_ITEMS     100
 
 
 typedef struct Item {
