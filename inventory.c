@@ -1,7 +1,7 @@
-/* ============================================================
+/* ==================================================================
  * inventory.c
  * Implementasi modul operasi inventaris — Sistem Inventarisasi Lab
- * ============================================================ */
+ * ================================================================== */
 
 #include <stdio.h>
 #include <string.h>
@@ -24,7 +24,7 @@ void addItem(Node **head) {
 
     findNodeById(*head, newItem.id, &found);
     if (found != NULL) {
-        printf("Gagal: ID barang sudah ada.\n");
+        printf("Gagal: ID barang sudah ada\n");
         return;
     }
 

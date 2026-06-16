@@ -3,9 +3,9 @@
 
 void clearInputBuffer(void)
 {
-    int ch;
+    int c;
 
-    while ((ch = getchar()) != '\n' && ch != EOF)
+    while ((c = getchar()) != '\n' && c != EOF)
     {
     //kosong
     }
@@ -13,13 +13,13 @@ void clearInputBuffer(void)
 
 void checkMemoryWarning(Node* head)
 {
-    int jumlahData;
+    int count;
 
-    countNodes(head, &jumlahData);
+    countNodes(head, &count);
 
-    if (jumlahData >= MAX_ITEMS * 0.8)
+    if (count >= MAX_ITEMS * 0.8)
     {
         printf("\nPeringatan: kapasitas inventaris hampir penuh!\n");
-        printf("Data tersimpan: %d dari %d\n", jumlahData, MAX_ITEMS);
+        printf("Data tersimpan: %d dari %d\n", count, MAX_ITEMS);
     }
 }
