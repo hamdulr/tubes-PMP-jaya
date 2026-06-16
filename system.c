@@ -5,7 +5,7 @@
 #include "linkedlist.h"
 #include "utils.h"
 
-void startSystem(void) {
+void startSystem() {
     Node *head = NULL;
     initList(&head);
 
