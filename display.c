@@ -26,6 +26,7 @@ void printMenu(void) {
     printf("4. Update Stok Barang\n");
     printf("5. Update Status Barang\n");
     printf("6. Tampilkan Seluruh Data\n");
+    printf("7. Tampilkan Rangkuman Data\n");
     printf("0. Keluar Sistem\n");
     printf("Pilih menu: ");
 }
